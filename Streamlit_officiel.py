@@ -650,7 +650,7 @@ elif page == pages[2] :
           model = LinearRegression()
       elif model_type == 'Ridge':
           model = Ridge(**params)
-      elif model_type == 'Lasso' :
+      elif model_type == 'Lasso':
           model = Lasso(**params)
       elif model_type == 'Elastic Net':
           model = ElasticNet(**params)
@@ -667,17 +667,9 @@ elif page == pages[2] :
       r2_train = r2_score(y_train, y_pred_train)
       r2_test = r2_score(y_test, y_pred_test)
 
-    # Sauvegarde du modèle dans le chemin spécifié
-      chemin = r"C:\Users\yacin\Desktop\Projet Officiel Jan 24 DA Analyse du bien être sur Terre\Streamlit\Streamlit_WHR"
-      nom_fichier = f"{model_type.replace(' ', '_').lower()}_model.joblib"
-      dump(model, os.path.join(chemin, nom_fichier))
-      
       return model, mse_train, mse_test, r2_train, r2_test
 
-
-
-
-# Streamlit 
+# Streamlit interface
   model_type = st.selectbox('Choisissez le type de modèle', ['Linear Regression', 'Ridge', 'Lasso', 'Elastic Net', 'Random Forest', 'XGBoost'])
   params = {}
   if model_type in ['Ridge', 'Lasso', 'Elastic Net']:
@@ -691,8 +683,8 @@ elif page == pages[2] :
 
   if st.button('Entraîner et évaluer le modèle'):
       model, mse_train, mse_test, r2_train, r2_test = train_model(model_type, params)
-      st.write(f"MSE Train: {mse_train:.4f}, R2 Train: {r2_train:.4f} ")
-      st.write(f"MSE Test: {mse_test:.4f}, R2 Test: {r2_test:.4f} ")
+      st.write(f"MSE Train: {mse_train:.4f}, R2 Train: {r2_train:.4f}")
+      st.write(f"MSE Test: {mse_test:.4f}, R2 Test: {r2_test:.4f}")
 
       # Afficher les graphiques
       y_pred = model.predict(X_test)
@@ -702,6 +694,4 @@ elif page == pages[2] :
       ax.set_xlabel('Valeurs Réelles')
       ax.set_ylabel('Prédictions')
       ax.set_title('Comparaison des Prédictions et Valeurs Réelles')
-      st.pyplot(fig)  
-
-#fin
+      st.pyplot(fig)
