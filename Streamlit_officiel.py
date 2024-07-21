@@ -668,11 +668,14 @@ elif page == pages[2] :
       r2_test = r2_score(y_test, y_pred_test)
 
     # Sauvegarde du modèle dans le chemin spécifié
-      chemin = r"C:\Users\yacin\OneDrive\Documents\GitHub\Streamlit_world_happiness_report\env"
+      chemin = r"C:\Users\yacin\Desktop\Projet Officiel Jan 24 DA Analyse du bien être sur Terre\Streamlit\Streamlit_WHR"
       nom_fichier = f"{model_type.replace(' ', '_').lower()}_model.joblib"
       dump(model, os.path.join(chemin, nom_fichier))
-
+      
       return model, mse_train, mse_test, r2_train, r2_test
+
+
+
 
 # Streamlit 
   model_type = st.selectbox('Choisissez le type de modèle', ['Linear Regression', 'Ridge', 'Lasso', 'Elastic Net', 'Random Forest', 'XGBoost'])
